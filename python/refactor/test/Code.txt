@@ -1,0 +1,28 @@
+int computeNumber( int j, float k, double m );
+
+int a = 1;
+float b = 3.14;
+double c = 2*b;
+
+int x = computeNumber( a, b, c );
+int y = computeNumber(dd,e,f);
+int z =  computeNumber( gvar, hmin,ii );
+
+
+//Now assume this method above is used in 105,000 other places, but we need
+//to refactor its signature to now take a new parameter as the first argument.
+//So the prototype becomes: int computeNumber( int j, const std::string& str, float k, double m );
+
+std::string myStr{ "hello" };
+
+int q =  computeNumber( gvar, myStr, hmin, ii);
+
+
+Search Criteria:
+=\s*?computeNumber\(\s*?([a-z]+),\s*?([a-z]+),\s*?([a-z]+)\s*?\)\s*?;
+
+Replace Criteria:
+= computeNumber( \1, myStr, \2, \3 );
+
+Command to execute:
+python refactor.py r "=\s*?computeNumber\(\s*?([a-z]+),\s*?([a-z]+),\s*?([a-z]+)\s*?\)\s*?;" "= computeNumber( \1, myStr, \2, \3 );"
