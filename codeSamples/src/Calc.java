@@ -1,4 +1,4 @@
-import MyCalc.PCalc;
+//import MyCalc.PCalc;
 public class Calc
 {
     static int uniqueID = 0;
@@ -53,10 +53,10 @@ public class Calc
         System.out.println( c.toString() );
         System.out.println( d.toString() );
 
-        PCalc pc = new PCalc(2,4);
-        pc.left = 5;
-        double prod = pc.mult();
-        System.out.println( "Product is " + prod );
+        // PCalc pc = new PCalc(2,4);
+        // pc.left = 5;
+        // double prod = pc.mult();
+        // System.out.println( "Product is " + prod );
 
         float a = (float)4;
         float b = (float)4.000001;
