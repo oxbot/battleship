@@ -24,12 +24,11 @@ public class Animal
     {
         System.out.println( "Running Animal Program...");
 
-        Animal a = new Animal( "Bill" );
-        if( a.breathe() )
+        Animal ted = new Animal( "Bill" );
+        if( ted.breathe() )
             System.out.println("Feeling refreshed...");
 
         Animal b = new Animal( "Ted" );
         b.communicate(); //communicate(b)
-        a.communicate(); //communicate(a)
     }
 }
