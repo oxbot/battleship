@@ -1,6 +1,6 @@
 Repository for CSCE 093: Programming Paradigms
 
-Summer Short Course 2018
+Summer Short Course 2021
 
 Dr. Scott Nykl
 Building 642 Room 203
@@ -20,4 +20,5 @@ git config --global http.sslverify true
 Now we have completed all the setup stuff! From here on out, we get to use GIT.
 
 To Checkout the repo, issue the following command:
-git clone https://git.nykl.net/csce093/csce093.git .
+cd c:\repos
+git clone https://git.nykl.net/csce093/csce093.git
