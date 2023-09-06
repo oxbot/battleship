@@ -1,6 +1,6 @@
 Repository for CSCE 093: Programming Paradigms
 
-Summer Short Course 2022
+Summer Short Course 2023
 
 Dr. Scott Nykl
 Building 642 Room 203
