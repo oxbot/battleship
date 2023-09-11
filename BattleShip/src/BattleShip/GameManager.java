@@ -16,6 +16,8 @@ public class GameManager
 	
 	public GameManager()
 	{		
+		listener = new ServerSocket(10000);
+
 	}
 	
 	//Returns a client reference to the opponent. This way, we can inspect attributes
@@ -23,6 +25,13 @@ public class GameManager
 	//so a client is able to use this method to get a reference to his opponent
 	public Client getOpponent( Client me )
 	{
+		for (Client item : clients) {
+			//Not perfect check, names could be the same
+			if (item.getName() != me.getName()) {
+				return item;
+			}
+		}
+		return null;
 	}
 	
 	//In a asychronous nature, begin playing the game. This should only occur after 
@@ -45,11 +54,28 @@ public class GameManager
 	//Don't forget about try/finally blocks, if needed
 	boolean waitFor2PlayersToConnect() throws IOException
 	{
+		while (clients.size() != 2) {
+			try{
+				Socket clientSocket = listener.accept();
+				BufferedReader in = new BufferedReader( new InputStreamReader( socket.getInputStream() ) );
+				PrintWriter out = new PrintWriter( socket.getOutputStream() );
+				Client client = new Client(in, out, self);
+				System.out.println("Client added");
+				clients.add(client);
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	//let players initialize their name, and gameboard here. This should be done asynchronously
 	void initPlayers() throws IOException
 	{
+		//How do I do this asynchronously?
+		for (Client c : clients) {
+			c.initPlayer();
+		}
 	}
 	
 	
