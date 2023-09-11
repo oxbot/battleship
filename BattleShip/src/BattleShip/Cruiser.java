@@ -1,3 +1,19 @@
 package BattleShip;
 
-I'm a cruiser and I should inherit a ship...
+public class Cruiser extends Ship {
+
+    public Cruiser() {
+        super();
+    }
+
+    public char drawShipStatusAtCell( boolean isDamaged ) {
+        return 'a';
+    }
+	
+	public int getLength() {
+
+        return 1;
+
+    }
+
+}
