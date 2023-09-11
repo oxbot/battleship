@@ -100,7 +100,23 @@ public class Client
 		
 		//Get ship locations from the player for all 2 ships (or more than 2 if you're using more ships)
 		//Need to do a ton of error checking and input validation here
-		input = scanner.nextLine();
+
+		boolean addShipB = false;
+		while (!addShipB) {
+			input = scanner.nextLine();
+			addShipB = addShip(input);
+		}
+
+		
+		
+		//After all game state is input, draw the game board to the client
+		
+		
+		System.out.println( "Waiting for other player to finish their setup, then war will ensue!" );
+	}
+
+	boolean addShip(String input) {
+
 		String[] boatInfo = input.split(" ");
 		Position s1 = new Position(boatInfo[1], boatInfo[2]);
 		Ship s = null;
@@ -110,12 +126,12 @@ public class Client
 		else if (boatInfo[0] == "C") {
 			s = new Cruiser();
 		}
-		board.addShip(s, s1, null);
-		
-		//After all game state is input, draw the game board to the client
-		
-		
-		System.out.println( "Waiting for other player to finish their setup, then war will ensue!" );
+
+		swtich (boatInfo[3]) {
+			
+		}
+
+		return board.addShip(s, s1, null);
 	}
 	
 	String getName() { return this.name; }
