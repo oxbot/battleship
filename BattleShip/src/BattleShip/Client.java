@@ -118,7 +118,7 @@ public class Client
 	boolean addShip(String input) {
 
 		String[] boatInfo = input.split(" ");
-		Position s1 = new Position(boatInfo[1], boatInfo[2]);
+		Position s1 = new Position(Integer.parseInt(boatInfo[1]), Integer.parseInt(boatInfo[2]));
 		Ship s = null;
 		if (boatInfo[0] == "D") {
 			s = new Destroyer();
@@ -127,7 +127,17 @@ public class Client
 			s = new Cruiser();
 		}
 
-		swtich (boatInfo[3]) {
+		switch (boatInfo[3]) {
+			case "w":
+			break;
+			case "s":
+			break;
+			case "n":
+			break;
+			case "e":
+			break;
+			default:
+			break;
 			
 		}
 
