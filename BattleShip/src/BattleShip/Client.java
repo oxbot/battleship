@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Client
 {
@@ -127,21 +128,28 @@ public class Client
 			s = new Cruiser();
 		}
 
+		Heading h = HEADING.WEST;
+
 		switch (boatInfo[3]) {
 			case "w":
-			break;
+				h = HEADING.WEST;
+				break;
 			case "s":
-			break;
+				h = HEADING.SOUTH;
+				break;
 			case "n":
-			break;
+				h = HEADING.NORTH;
+				break;
 			case "e":
-			break;
+				h = HEADING.EAST;
+				break;
 			default:
-			break;
+				//Handle this
+				break;
 			
 		}
 
-		return board.addShip(s, s1, null);
+		return board.addShip(s, s1, h);
 	}
 	
 	String getName() { return this.name; }

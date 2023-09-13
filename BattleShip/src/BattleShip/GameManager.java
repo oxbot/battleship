@@ -16,7 +16,12 @@ public class GameManager
 	
 	public GameManager()
 	{		
-		listener = new ServerSocket(10000);
+		try {
+			listener = new ServerSocket(10000);
+		} catch (Exception e) {
+			
+		}
+		
 
 	}
 	
@@ -57,9 +62,9 @@ public class GameManager
 		while (clients.size() != 2) {
 			try{
 				Socket clientSocket = listener.accept();
-				BufferedReader in = new BufferedReader( new InputStreamReader( socket.getInputStream() ) );
-				PrintWriter out = new PrintWriter( socket.getOutputStream() );
-				Client client = new Client(in, out, self);
+				BufferedReader in = new BufferedReader( new InputStreamReader( clientSocket.getInputStream() ) );
+				PrintWriter out = new PrintWriter( clientSocket.getOutputStream() );
+				Client client = new Client(in, out, this);
 				System.out.println("Client added");
 				clients.add(client);
 			}
@@ -67,6 +72,7 @@ public class GameManager
 				e.printStackTrace();
 			}
 		}
+		return true;
 	}
 	
 	//let players initialize their name, and gameboard here. This should be done asynchronously
@@ -89,7 +95,12 @@ public class GameManager
 		System.out.println( "Waiting for two players to connect to TCP:10000" );
 		m.waitFor2PlayersToConnect();
 		System.out.println( "Clients have joined!!!");		
-		m.initPlayers();
+		try {
+			m.initPlayers();
+		}
+		catch (Exception e) {
+			System.out.println("exception");
+		}
 		System.out.println( m.clients.get(0).getName() + " vs " + m.clients.get(1).getName() + " Let's Rumble..." );
 		m.playGame();		
 		System.out.println( "Shutting down server now... Disconnecting Clients..." );
