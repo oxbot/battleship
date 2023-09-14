@@ -11,6 +11,7 @@ public class Cell
 	
 	public boolean hasBeenStruckByMissile()
 	{
+		return false;
 	}
 	
 	public void hasBeenStruckByMissile( boolean wasStruck )
@@ -19,14 +20,12 @@ public class Cell
 	
 	public char draw()
 	{
-		if( this.ship == null )
-		{
-			if( this.struckByMissle )
-				return 'x';
-			return ' ';
+		if( this.ship != null ){
+			return ship.drawShipStatusAtCell(struckByMissle);
 		}
-		//a ship is at this cell
-		return ship.drawShipStatusAtCell( this.struckByMissle );			
+		else {
+			return '*';
+		}
 	}
 	
 	public Ship getShip() { return this.ship; }

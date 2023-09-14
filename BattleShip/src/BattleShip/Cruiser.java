@@ -2,8 +2,8 @@ package BattleShip;
 
 public class Cruiser extends Ship {
 
-    public Cruiser() {
-        super();
+    public Cruiser(String name) {
+        super(name);
     }
 
     public char drawShipStatusAtCell( boolean isDamaged ) {

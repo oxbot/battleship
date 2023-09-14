@@ -2,8 +2,8 @@ package BattleShip;
 
 public class Destroyer extends Ship {
 
-    public Destroyer() {
-        super();
+    public Destroyer(String name) {
+        super(name);
     }
 
     public char drawShipStatusAtCell( boolean isDamaged ) {

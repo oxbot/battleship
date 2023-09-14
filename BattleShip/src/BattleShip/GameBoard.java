@@ -1,5 +1,6 @@
 package BattleShip;
 import java.util.ArrayList;
+import java.lang.StringBuilder;
 
 public class GameBoard
 {
@@ -21,7 +22,22 @@ public class GameBoard
 	
 	public String draw()
 	{
-
+		StringBuilder sb = new StringBuilder();
+		sb.append("*----------*\n");
+		for (int i = 0; i < rowCount + 2; i++) {
+			if (i == 0) {
+				sb.append("|");
+			}
+			else if (i == rowCount + 1) {
+				sb.append("|");
+			}
+			else {
+				for (int j = 0; j < colCount; j++) {
+				sb.append(this.cells.get(i).get(j).draw());
+			}
+			}
+		}
+		sb.append("*----------*\n");
 		//draw the entire board... I'd use a StringBuilder object to improve speed
 		//remember - you must draw one entire row at a time, and don't forget the
 		//pretty border...
@@ -33,6 +49,9 @@ public class GameBoard
 	//Returns true on successful addition; false, otherwise
 	public boolean addShip( Ship s , Position sternLocation, HEADING bowDirection )
 	{
+		//Check if fits on board
+		//check if collides with other ship
+		myShips.add(s);
 		return true;
 	}
 	
@@ -42,7 +61,7 @@ public class GameBoard
 	//Ensure you handle missiles that may fly off the grid
 	public Ship fireMissle( Position coordinate )
 	{
-		return true;
+		return null;
 	}
 	
 	//Here's a simple driver that should work without touching any of the code below this point

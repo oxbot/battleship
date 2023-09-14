@@ -134,10 +134,12 @@ public class Client
 		Position s1 = new Position(Integer.parseInt(boatInfo[1]), Integer.parseInt(boatInfo[2]));
 		Ship s = null;
 		if (boatInfo[0] == "D") {
-			s = new Destroyer();
+			//Need to fix boat name getting from the scanner
+			s = new Destroyer(boatInfo[4]);
 		}
 		else if (boatInfo[0] == "C") {
-			s = new Cruiser();
+			//Need to fix boat name getting from the scanner
+			s = new Cruiser(boatInfo[4]);
 		}
 
 		HEADING h = HEADING.WEST;
