@@ -25,6 +25,7 @@ public class GameBoard
 		//draw the entire board... I'd use a StringBuilder object to improve speed
 		//remember - you must draw one entire row at a time, and don't forget the
 		//pretty border...
+		return "a";
 	}
 	
 	//add in a ship if it fully 1) fits on the board and 2) doesn't collide w/
@@ -32,7 +33,7 @@ public class GameBoard
 	//Returns true on successful addition; false, otherwise
 	public boolean addShip( Ship s , Position sternLocation, HEADING bowDirection )
 	{
-		
+		return true;
 	}
 	
 	//Returns A reference to a ship, if that ship was struck by a missle.
@@ -41,7 +42,7 @@ public class GameBoard
 	//Ensure you handle missiles that may fly off the grid
 	public Ship fireMissle( Position coordinate )
 	{
-		
+		return true;
 	}
 	
 	//Here's a simple driver that should work without touching any of the code below this point

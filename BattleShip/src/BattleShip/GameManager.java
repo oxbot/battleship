@@ -19,7 +19,7 @@ public class GameManager
 		try {
 			listener = new ServerSocket(10000);
 		} catch (Exception e) {
-			
+
 		}
 		
 
@@ -31,8 +31,8 @@ public class GameManager
 	public Client getOpponent( Client me )
 	{
 		for (Client item : clients) {
-			//Not perfect check, names could be the same
-			if (item.getName() != me.getName()) {
+			//make sure it's the opponent
+			if (!item.equals(me)) {
 				return item;
 			}
 		}
@@ -78,10 +78,11 @@ public class GameManager
 	//let players initialize their name, and gameboard here. This should be done asynchronously
 	void initPlayers() throws IOException
 	{
-		//How do I do this asynchronously?
-		for (Client c : clients) {
-			c.initPlayer();
-		}
+		clients.parallelStream().forEach( client -> 
+		{
+			try{ client.initPlayer(); }
+			catch( IOException e ) { e.printStackTrace(); } 
+		} );
 	}
 	
 	

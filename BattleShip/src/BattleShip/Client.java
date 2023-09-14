@@ -80,9 +80,11 @@ public class Client
 	public void initPlayer() throws IOException
 	{
 		//1.Get player name
-		//Maybe use the buffer instead of a scanner
-		Scanner scanner = new Scanner(System.in);
 		out.println("Enter player name: ");
+		out.flush();
+		//Maybe use the buffer instead of a scanner
+		Scanner scanner = new Scanner(in);
+		
 		String input = scanner.nextLine();
 		this.name = input;
 		//2.Print out instructions
@@ -98,6 +100,7 @@ public class Client
 		out.println("   the name of the ship will be \"USS MyBoat\"");
 		out.println("Enter Ship 1 information:" );
 		out.flush();
+
 		
 		//Get ship locations from the player for all 2 ships (or more than 2 if you're using more ships)
 		//Need to do a ton of error checking and input validation here
@@ -108,9 +111,18 @@ public class Client
 			addShipB = addShip(input);
 		}
 
-		
+		out.println("Enter Ship 2 information:" );
+		out.flush();
+
+		addShipB = false;
+		while (!addShipB) {
+			input = scanner.nextLine();
+			addShipB = addShip(input);
+		}
 		
 		//After all game state is input, draw the game board to the client
+
+		scanner.close();
 		
 		
 		System.out.println( "Waiting for other player to finish their setup, then war will ensue!" );
@@ -128,7 +140,7 @@ public class Client
 			s = new Cruiser();
 		}
 
-		Heading h = HEADING.WEST;
+		HEADING h = HEADING.WEST;
 
 		switch (boatInfo[3]) {
 			case "w":
