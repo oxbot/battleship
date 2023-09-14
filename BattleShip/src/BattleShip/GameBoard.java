@@ -29,7 +29,7 @@ public class GameBoard
 				sb.append("|");
 			}
 			else if (i == rowCount + 1) {
-				sb.append("|");
+				sb.append("|\n");
 			}
 			else {
 				for (int j = 0; j < colCount; j++) {
