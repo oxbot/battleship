@@ -16,6 +16,8 @@ public class Client
 	GameManager man = null;
 	GameBoard board = new GameBoard(10,10);
 	GameBoard targets = new GameBoard(10,10);
+
+	Scanner scanner;
 	
 	Client( BufferedReader in, PrintWriter out, GameManager manager )
 	{
@@ -38,6 +40,7 @@ public class Client
 			out.println( "Your Ships: " + this.board.draw() );
 			out.println( "   Waiting for Next Command...\n\n" );
 			out.flush();
+			String input = scanner.nextLine();
 			
 			//Perform test here to see if we have run or lost
 		}
@@ -83,7 +86,7 @@ public class Client
 		out.println("Enter player name: ");
 		out.flush();
 		//Maybe use the buffer instead of a scanner
-		Scanner scanner = new Scanner(in);
+		scanner = new Scanner(in);
 		
 		String input = scanner.nextLine();
 		this.name = input;
@@ -102,7 +105,7 @@ public class Client
 		out.flush();
 
 		
-		//Get ship locations from the player for all 2 ships (or more than 2 if you're using more ships)
+		//Get ship locations from the player for all ships (or more than 2 if you're using more ships)
 		//Need to do a ton of error checking and input validation here
 
 		boolean addShipB = false;
@@ -122,10 +125,8 @@ public class Client
 		
 		//After all game state is input, draw the game board to the client
 
-		scanner.close();
-		
-		
-		System.out.println( "Waiting for other player to finish their setup, then war will ensue!" );
+		out.println( "Waiting for other player to finish their setup, then war will ensue!" );
+		out.flush();
 	}
 
 	boolean addShip(String input) {

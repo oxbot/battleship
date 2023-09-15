@@ -11,11 +11,12 @@ public class Cell
 	
 	public boolean hasBeenStruckByMissile()
 	{
-		return false;
+		return struckByMissle;
 	}
 	
 	public void hasBeenStruckByMissile( boolean wasStruck )
 	{	
+		struckByMissle  = wasStruck;
 	}
 	
 	public char draw()

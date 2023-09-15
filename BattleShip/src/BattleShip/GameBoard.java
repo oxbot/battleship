@@ -14,34 +14,43 @@ public class GameBoard
 	
 	public GameBoard( int rowCount, int colCount )
 	{
+		cells = new ArrayList< ArrayList< Cell > >();
 		this.rowCount = rowCount;
 		this.colCount = colCount;
 		
 		//create the 2D array of cells
+		for (int i = 0; i < this.colCount; i++) {
+			ArrayList< Cell > cellRow = new ArrayList< Cell >();
+			for (int j = 0; j < this.rowCount; j++) {
+				Cell cell = new Cell();
+				cellRow.add(cell);
+			}
+			cells.add(cellRow);
+		}
 	}
 	
 	public String draw()
 	{
 		StringBuilder sb = new StringBuilder();
-		sb.append("*----------*\n");
-		for (int i = 0; i < rowCount + 2; i++) {
-			if (i == 0) {
-				sb.append("|");
-			}
-			else if (i == rowCount + 1) {
-				sb.append("|\n");
-			}
-			else {
-				for (int j = 0; j < colCount; j++) {
-				sb.append(this.cells.get(i).get(j).draw());
-			}
+		sb.append("\n*----------*\n");
+		for (int i = 0; i < rowCount; i++) {
+			for (int j = 0; j < colCount + 2; j++) {
+				if (j == 0) {
+					sb.append("|");
+				}
+				else if (j == colCount + 1) {
+					sb.append("|\n");
+				}
+				else {
+					sb.append(this.cells.get(i).get(j-1).draw());
+				}
 			}
 		}
 		sb.append("*----------*\n");
 		//draw the entire board... I'd use a StringBuilder object to improve speed
 		//remember - you must draw one entire row at a time, and don't forget the
 		//pretty border...
-		return "a";
+		return sb.toString();
 	}
 	
 	//add in a ship if it fully 1) fits on the board and 2) doesn't collide w/
@@ -51,6 +60,35 @@ public class GameBoard
 	{
 		//Check if fits on board
 		//check if collides with other ship
+		
+		ArrayList<Cell> shipLoc = new ArrayList<Cell>();
+
+		//Different loops depending on ship heading, if there's issues with ship putting need to check this
+		if (bowDirection == HEADING.SOUTH) {
+			for (int i = sternLocation.y; i < sternLocation.y + s.getLength() + s.getLength(); i++){
+			cells.get(sternLocation.x).get(i).setShip(s);
+			shipLoc.add(cells.get(sternLocation.x).get(i));
+		}
+		}
+		else if (bowDirection == HEADING.NORTH) {
+			for (int i = sternLocation.y; i > sternLocation.y - s.getLength(); i--){
+				cells.get(sternLocation.x).get(i).setShip(s);
+				shipLoc.add(cells.get(sternLocation.x).get(i));
+			}
+		}
+		else if (bowDirection == HEADING.EAST) {
+			for (int i = sternLocation.x; i < sternLocation.x + s.getLength(); i++){
+				cells.get(i).get(sternLocation.y).setShip(s);
+				shipLoc.add(cells.get(i).get(sternLocation.y));
+			}
+		}
+		else if (bowDirection == HEADING.WEST) {
+			for (int i = sternLocation.x; i > sternLocation.x - s.getLength(); i--){
+				cells.get(i).get(sternLocation.y).setShip(s);
+				shipLoc.add(cells.get(i).get(sternLocation.y));
+			}
+		}
+		s.setPosition(shipLoc);
 		myShips.add(s);
 		return true;
 	}
