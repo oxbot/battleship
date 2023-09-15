@@ -112,6 +112,7 @@ public class Client
 		while (!addShipB) {
 			input = scanner.nextLine();
 			addShipB = addShip(input);
+			//Check if ship was successfully added
 		}
 
 		out.println("Enter Ship 2 information:" );
