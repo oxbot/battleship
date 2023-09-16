@@ -32,6 +32,7 @@ public class Client
 		this.out.println( "   To Launch a missle at your enemy:" );
 		this.out.println( "F 2 4" );
 		this.out.println( "Fires a missile at coordinate x=2, y=4." );
+		out.flush();
 		
 		while(processCommand()) // put Code Here to process in game commands, after each command, print the target board and game board w/ updated state )
 		{
@@ -44,10 +45,12 @@ public class Client
 
 			if (allEnemyShipsAreDestroyed()) {
 				out.println("You Won!");
+				out.flush();
 				break;
 			}
 			else if (allMyShipsAreDestroyed()) {
 				out.println("You lost.");
+				out.flush();
 				break;
 			}
 		}
@@ -56,13 +59,18 @@ public class Client
 	//Returns a bool, true iff all of this client's ships are destroyed
 	boolean allMyShipsAreDestroyed()
 	{
-		return false;
+		for (Ship s : board.myShips) {
+			if (s.isAlive()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	//Returns a bool, true iff all of the opponent's ships are destroyed
 	boolean allEnemyShipsAreDestroyed()
 	{
-		return man.getOpponent(this).getGameBoard().allMyShipsAreDestroyed();
+		return man.getOpponent(this).allMyShipsAreDestroyed();
 	}
 
 	//"F 2 4" = Fire command
@@ -93,6 +101,7 @@ public class Client
 		Ship boat = man.getOpponent(this).getGameBoard().fireMissle(pos);
 		if (boat != null) {
 			out.println("You hit ship " + boat.getName());
+			targets.cells.get(pos.y).get(pos.x).hasBeenStruckByMissile( true );
 			out.flush();
 		}
 		else {
