@@ -19,9 +19,9 @@ public class GameBoard
 		this.colCount = colCount;
 		
 		//create the 2D array of cells
-		for (int i = 0; i < this.colCount; i++) {
+		for (int i = 0; i < this.rowCount; i++) {
 			ArrayList< Cell > cellRow = new ArrayList< Cell >();
-			for (int j = 0; j < this.rowCount; j++) {
+			for (int j = 0; j < this.colCount; j++) {
 				Cell cell = new Cell();
 				cellRow.add(cell);
 			}
@@ -66,26 +66,26 @@ public class GameBoard
 		//Different loops depending on ship heading, if there's issues with ship putting need to check this
 		if (bowDirection == HEADING.SOUTH) {
 			for (int i = sternLocation.y; i < sternLocation.y + s.getLength(); i++){
-			cells.get(sternLocation.x).get(i).setShip(s);
-			shipLoc.add(cells.get(sternLocation.x).get(i));
-		}
+				cells.get(i).get(sternLocation.x).setShip(s);
+				shipLoc.add(cells.get(i).get(sternLocation.x));
+			}
 		}
 		else if (bowDirection == HEADING.NORTH) {
 			for (int i = sternLocation.y; i > sternLocation.y - s.getLength(); i--){
-				cells.get(sternLocation.x).get(i).setShip(s);
-				shipLoc.add(cells.get(sternLocation.x).get(i));
+				cells.get(i).get(sternLocation.x).setShip(s);
+				shipLoc.add(cells.get(i).get(sternLocation.x));
 			}
 		}
 		else if (bowDirection == HEADING.EAST) {
 			for (int i = sternLocation.x; i < sternLocation.x + s.getLength(); i++){
-				cells.get(i).get(sternLocation.y).setShip(s);
-				shipLoc.add(cells.get(i).get(sternLocation.y));
+				cells.get(sternLocation.y).get(i).setShip(s);
+				shipLoc.add(cells.get(sternLocation.y).get(i));
 			}
 		}
 		else if (bowDirection == HEADING.WEST) {
 			for (int i = sternLocation.x; i > sternLocation.x - s.getLength(); i--){
-				cells.get(i).get(sternLocation.y).setShip(s);
-				shipLoc.add(cells.get(i).get(sternLocation.y));
+				cells.get(sternLocation.y).get(i).setShip(s);
+				shipLoc.add(cells.get(sternLocation.y).get(i));
 			}
 		}
 		s.setPosition(shipLoc);

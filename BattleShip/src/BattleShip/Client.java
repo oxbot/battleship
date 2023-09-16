@@ -136,7 +136,8 @@ public class Client
 		//Need to validate input
 
 		String[] boatInfo = input.split(" ");
-		Position s1 = new Position(Integer.parseInt(boatInfo[1]), Integer.parseInt(boatInfo[2]));
+		//Take 1 away from input to normalize for 0 indexing
+		Position s1 = new Position(Integer.parseInt(boatInfo[1]) - 1, Integer.parseInt(boatInfo[2]) - 1 );
 		Ship s = null;
 		if (boatInfo[0].equals("D")) {
 			//Need to fix boat name getting from the scanner
