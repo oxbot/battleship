@@ -111,17 +111,18 @@ public class Client
 		boolean addShipB = false;
 		while (!addShipB) {
 			input = scanner.nextLine();
-			addShipB = addShip(input);
+			addShipB = this.addShip(input);
 			//Check if ship was successfully added
 		}
 
 		out.println("Enter Ship 2 information:" );
 		out.flush();
+		System.out.println("Here");
 
 		addShipB = false;
 		while (!addShipB) {
 			input = scanner.nextLine();
-			addShipB = addShip(input);
+			addShipB = this.addShip(input);
 		}
 		
 		//After all game state is input, draw the game board to the client
@@ -132,21 +133,23 @@ public class Client
 
 	boolean addShip(String input) {
 
+		//Need to validate input
+
 		String[] boatInfo = input.split(" ");
 		Position s1 = new Position(Integer.parseInt(boatInfo[1]), Integer.parseInt(boatInfo[2]));
 		Ship s = null;
-		if (boatInfo[0] == "D") {
+		if (boatInfo[0].equals("D")) {
 			//Need to fix boat name getting from the scanner
 			s = new Destroyer(boatInfo[4]);
 		}
-		else if (boatInfo[0] == "C") {
+		else if (boatInfo[0].equals("C")) {
 			//Need to fix boat name getting from the scanner
 			s = new Cruiser(boatInfo[4]);
 		}
 
-		HEADING h = HEADING.WEST;
+		HEADING h = null;
 
-		switch (boatInfo[3]) {
+		switch (boatInfo[3].toLowerCase()) {
 			case "w":
 				h = HEADING.WEST;
 				break;

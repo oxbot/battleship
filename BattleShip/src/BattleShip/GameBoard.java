@@ -65,7 +65,7 @@ public class GameBoard
 
 		//Different loops depending on ship heading, if there's issues with ship putting need to check this
 		if (bowDirection == HEADING.SOUTH) {
-			for (int i = sternLocation.y; i < sternLocation.y + s.getLength() + s.getLength(); i++){
+			for (int i = sternLocation.y; i < sternLocation.y + s.getLength(); i++){
 			cells.get(sternLocation.x).get(i).setShip(s);
 			shipLoc.add(cells.get(sternLocation.x).get(i));
 		}

@@ -100,7 +100,7 @@ public class GameManager
 			m.initPlayers();
 		}
 		catch (Exception e) {
-			System.out.println("exception");
+			e.printStackTrace();;
 		}
 		System.out.println( m.clients.get(0).getName() + " vs " + m.clients.get(1).getName() + " Let's Rumble..." );
 		m.playGame();		
