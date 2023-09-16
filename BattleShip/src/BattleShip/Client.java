@@ -40,9 +40,16 @@ public class Client
 			out.println( "Your Ships: " + this.board.draw() );
 			out.println( "   Waiting for Next Command...\n\n" );
 			out.flush();
-			String input = scanner.nextLine();
-			
 			//Perform test here to see if we have run or lost
+
+			if (allEnemyShipsAreDestroyed()) {
+				out.println("You Won!");
+				break;
+			}
+			else if (allMyShipsAreDestroyed()) {
+				out.println("You lost.");
+				break;
+			}
 		}
 	}
 	
@@ -55,7 +62,7 @@ public class Client
 	//Returns a bool, true iff all of the opponent's ships are destroyed
 	boolean allEnemyShipsAreDestroyed()
 	{
-		return false;
+		return man.getOpponent(this).getGameBoard().allMyShipsAreDestroyed();
 	}
 
 	//"F 2 4" = Fire command
@@ -63,12 +70,36 @@ public class Client
 	//"D" - Redraw the latest game and target boards
 	boolean processCommand() throws IOException
 	{
+		scanner = new Scanner(in);
+		String input = scanner.nextLine();
+		String[] boatInfo = input.split(" ");
+
+		//Input validation
+
+		if (boatInfo[0].toLowerCase().equals("f")) {
+			processFireCmd(boatInfo);
+		}
+		else if (boatInfo[0].toLowerCase().equals("c")) {
+			processChatCmd(input);
+		}
 		return true;
 	}
 	
 	//When a fire command is typed, this method parses the coordinates and launches a missle at the enemy
 	boolean processFireCmd( String [] s )
 	{
+		Position pos = new Position(Integer.parseInt(s[1]) - 1, Integer.parseInt(s[2]) - 1);
+		//fire missile on opponent's board
+		Ship boat = man.getOpponent(this).getGameBoard().fireMissle(pos);
+		if (boat != null) {
+			out.println("You hit ship " + boat.getName());
+			out.flush();
+		}
+		else {
+			out.println("You missed");
+			out.flush();
+		}
+
 		return true;
 	}
 	
@@ -117,7 +148,6 @@ public class Client
 
 		out.println("Enter Ship 2 information:" );
 		out.flush();
-		System.out.println("Here");
 
 		addShipB = false;
 		while (!addShipB) {

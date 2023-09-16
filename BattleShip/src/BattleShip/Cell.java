@@ -24,6 +24,10 @@ public class Cell
 		if( this.ship != null ){
 			return ship.drawShipStatusAtCell(struckByMissle);
 		}
+		else if (this.ship == null && hasBeenStruckByMissile()) {
+			//this case should only be true for the target board after a successful hit
+			return 'X';
+		}
 		else {
 			return '*';
 		}

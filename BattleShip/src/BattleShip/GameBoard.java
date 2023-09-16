@@ -99,6 +99,17 @@ public class GameBoard
 	//Ensure you handle missiles that may fly off the grid
 	public Ship fireMissle( Position coordinate )
 	{
+		Cell cell = cells.get(coordinate.y).get(coordinate.x);
+
+		if (cell.getShip() != null ) {
+			if (cell.hasBeenStruckByMissile()) {
+				//should I do something if a ship was already struck at this location?
+			}
+			else {
+				cell.hasBeenStruckByMissile(true);
+				return cell.getShip();
+			}
+		}
 		return null;
 	}
 	
