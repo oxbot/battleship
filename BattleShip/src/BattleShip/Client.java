@@ -36,6 +36,7 @@ public class Client
 		
 		while(processCommand()) // put Code Here to process in game commands, after each command, print the target board and game board w/ updated state )
 		{
+			
 			out.println( "------------------------" );
 			out.println( "Target Board:" + this.targets.draw() );
 			out.println( "Your Ships: " + this.board.draw() );
@@ -115,6 +116,11 @@ public class Client
 	//Send a message to the opponent
 	boolean processChatCmd( String s )
 	{
+		//pass to game manager, or i guess get the opponent and pass directly
+		//get rid of first 2 characters in s
+		//ugly but might work
+		man.getOpponent(this).out.println(s);
+		man.getOpponent(this).out.flush();
 		return true;
 	}
 	
