@@ -32,6 +32,10 @@ public class Client
 		this.out.println( "   To Launch a missle at your enemy:" );
 		this.out.println( "F 2 4" );
 		this.out.println( "Fires a missile at coordinate x=2, y=4." );
+		out.println( "------------------------" );
+		out.println( "Target Board:" + this.targets.draw() );
+		out.println( "Your Ships: " + this.board.draw() );
+		out.println( "   Waiting for Next Command...\n\n" );
 		out.flush();
 		
 		while(processCommand()) // put Code Here to process in game commands, after each command, print the target board and game board w/ updated state )
