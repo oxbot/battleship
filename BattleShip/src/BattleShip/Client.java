@@ -16,6 +16,7 @@ public class Client
 	GameManager man = null;
 	GameBoard board = new GameBoard(10,10);
 	GameBoard targets = new GameBoard(10,10);
+	ArrayList<Character> validShips = new ArrayList();
 
 	Scanner scanner;
 	
@@ -24,6 +25,8 @@ public class Client
 		this.in = in;
 		this.out = out;
 		this.man = manager;
+		validShips.add('D');
+		validShips.add('C');
 	}
 	
 	public void playGame() throws IOException
@@ -185,6 +188,8 @@ public class Client
 		//Need to validate input
 
 		String[] boatInfo = input.split(" ");
+		
+
 		//Take 1 away from input to normalize for 0 indexing
 		Position s1 = new Position(Integer.parseInt(boatInfo[1]) - 1, Integer.parseInt(boatInfo[2]) - 1 );
 		Ship s = null;
