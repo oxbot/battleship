@@ -113,7 +113,7 @@ public class Client
 			targets.cells.get(pos.y).get(pos.x).hasEnemyShip(true );
 			out.flush();
 		}
-		else if (pos.x > board.rowCount || pos.x < 1 || pos.y < 1 || pos.y > board.colCount) {
+		else if (pos.x > board.rowCount-1 || pos.x < 0 || pos.y < 0 || pos.y > board.colCount-1) {
 			out.println("You missed the board");
 		}
 		else {
