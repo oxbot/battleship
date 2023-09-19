@@ -4,6 +4,7 @@ public class Cell
 {
 	protected boolean struckByMissle = false;
 	protected Ship ship = null;
+	protected boolean hasEnemyShip = false;
 	
 	public Cell()
 	{		
@@ -17,6 +18,9 @@ public class Cell
 	public void hasBeenStruckByMissile( boolean wasStruck )
 	{	
 		struckByMissle  = wasStruck;
+	}
+	public void hasEnemyShip(boolean hasShip) {
+		this.hasEnemyShip = hasShip;
 	}
 	
 	public char draw()

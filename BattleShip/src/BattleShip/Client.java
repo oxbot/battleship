@@ -110,10 +110,16 @@ public class Client
 		if (boat != null) {
 			out.println("You hit ship " + boat.getName());
 			targets.cells.get(pos.y).get(pos.x).hasBeenStruckByMissile( true );
+			targets.cells.get(pos.y).get(pos.x).hasEnemyShip(true );
 			out.flush();
+		}
+		else if (pos.x > board.rowCount || pos.x < 1 || pos.y < 1 || pos.y > board.colCount) {
+			out.println("You missed the board");
 		}
 		else {
 			out.println("You missed");
+			targets.cells.get(pos.y).get(pos.x).hasBeenStruckByMissile( true );
+
 			out.flush();
 		}
 

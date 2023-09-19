@@ -58,7 +58,10 @@ public class GameBoard
 	//Returns true on successful addition; false, otherwise
 	public boolean addShip( Ship s , Position sternLocation, HEADING bowDirection )
 	{
-		//Check if fits on board
+		//Check if fits on board without heading consideration
+		if (sternLocation.x < 1 || sternLocation.x > rowCount || sternLocation.y > colCount|| sternLocation.y < 1) {
+			return false;
+		}
 		//check if collides with other ship
 		
 		ArrayList<Cell> shipLoc = new ArrayList<Cell>();
